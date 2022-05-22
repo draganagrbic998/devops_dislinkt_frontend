@@ -40,6 +40,9 @@
     "typescript": "~4.6.2"
   },
   "release": {
-    "branches": ["master", "develop"]
+    "branches": [
+      "master",
+      "develop"
+    ]
   }
 }

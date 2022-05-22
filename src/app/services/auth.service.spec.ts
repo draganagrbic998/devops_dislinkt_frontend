@@ -33,7 +33,7 @@ describe('AuthService', () => {
 
     it('should auth', fakeAsync(() => {
         let res: void;
-        
+
         service.auth().subscribe(response => res = response);
         const request = httpMock.expectOne(service['API_URL']);
         expect(request.request.method).toBe('GET');
