@@ -8,6 +8,7 @@ import { OfferListComponent } from './components/offer/offer-list/offer-list.com
 import { ProfileListComponent } from './components/profile/profile-list/profile-list.component';
 import { ProfileFormComponent } from './components/profile/profile-form/profile-form.component';
 import { NotificationListComponent } from './components/notification/notification-list/notification-list.component';
+import { EventListComponent } from './components/event/event-list/event-list.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,11 @@ const routes: Routes = [
     component: NotificationListComponent,
     data: { roles: [Role.USER] },
   },
+  {
+    path: Route.EVENTS,
+    component: EventListComponent,
+    data: { roles: [Role.ADMIN] }
+  }
 ];
 
 @NgModule({

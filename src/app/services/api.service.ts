@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { EventService } from './event.service';
 import { NotificationService } from './notification.service';
 import { OfferService } from './offer.service';
 import { ProfileService } from './profile.service';
@@ -14,5 +15,6 @@ export class ApiService {
     public profileService: ProfileService,
     public offerService: OfferService,
     public notificationService: NotificationService,
+    public eventService: EventService
   ) { }
 }
