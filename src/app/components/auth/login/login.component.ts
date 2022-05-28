@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { FormControlConfig } from 'src/app/utils/form';
-import { Route } from 'src/app/utils/route';
+import { Role, Route } from 'src/app/utils/route';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
   ];
   serviceName = 'authService';
   methodName = 'login';
-  backUrl = Route.OFFERS;
+  get backUrl() {
+    return this.storageService.getAuth()?.role === Role.USER ? Route.OFFERS : Route.EVENTS
+  }
 
 }

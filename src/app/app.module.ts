@@ -19,6 +19,7 @@ import { ProfileListComponent } from './components/profile/profile-list/profile-
 import { ProfileFormComponent } from './components/profile/profile-form/profile-form.component';
 import { NotificationListComponent } from './components/notification/notification-list/notification-list.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { EventListComponent } from './components/event/event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ProfileFormComponent,
     NotificationListComponent,
     ToolbarComponent,
+    EventListComponent,
   ],
   imports: [
     BrowserModule,

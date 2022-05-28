@@ -18,7 +18,10 @@
     </div>
     <div *ngFor="let result of page.results" class="result mat-elevation-z8">
         <div *ngFor="let field of fields(result)" class="row">
-            <span class="field">{{fieldPreview(field)}}</span>: {{valuePreview(result[field])}}
+            <span class="field">{{fieldPreview(field)}}</span>: {{valuePreview(result[field], field)}}
+        </div>
+        <div *ngFor="let field of fields(compositeData(result))" class="row">
+            <span class="field">{{fieldPreview(field)}}</span>: {{valuePreview(compositeData(result)[field], field)}}
         </div>
         <div class="buttons">
             <span></span>

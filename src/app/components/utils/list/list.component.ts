@@ -47,14 +47,23 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   fields(item: any) {
-    return Object.keys(item).filter(field => !this.config.hiddenFields?.includes(field));
+    return Object.keys(item).filter(field => !this.config.hiddenFields?.includes(field) && typeof item[field] !== 'object');
+  }
+
+  compositeData(item: any) {
+    const compositeFields = Object.keys(item).filter(field => !this.config.hiddenFields?.includes(field) && typeof item[field] === 'object')
+    let values = {}
+    for (const field of compositeFields) {
+      values = { ...values, ...item[field] }
+    }
+    return values
   }
 
   fieldPreview(field: string) {
     return fieldFormat(field);
   }
 
-  valuePreview(value: any) {
+  valuePreview(value: any, field?: string) {
     if (typeof value === 'boolean') {
       return value ? 'yes' : 'no';
     } if (Array.isArray(value)) {
@@ -67,6 +76,9 @@ export class ListComponent implements OnInit, OnDestroy {
         }
       });
       return result.length ? result.join(', ') : 'None';
+    }
+    if (field === 'date'){
+      return new Date(value).toISOString().substring(0, 10)
     }
     return value;
   }

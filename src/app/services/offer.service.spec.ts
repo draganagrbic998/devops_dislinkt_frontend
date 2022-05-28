@@ -36,7 +36,6 @@ describe('OfferService', () => {
 
         service.create({
             id: 1,
-            date: new Date(),
             position: 'position 1',
             requirements: 'requirements 1',
             description: 'description 1',
@@ -56,7 +55,6 @@ describe('OfferService', () => {
             results: [
                 {
                     id: 1,
-                    date: new Date(),
                     position: 'position 1',
                     requirements: 'requirements 1',
                     description: 'description 1',
@@ -64,7 +62,6 @@ describe('OfferService', () => {
                 },
                 {
                     id: 2,
-                    date: new Date(),
                     position: 'position 2',
                     requirements: 'requirements 2',
                     description: 'description 2',

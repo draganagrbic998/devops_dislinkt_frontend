@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Route } from 'src/app/utils/route';
+import { Role, Route } from 'src/app/utils/route';
 import { StorageService } from 'src/app/services/storage.service';
 
 interface ButtonConfig {
@@ -69,6 +69,10 @@ export class ToolbarComponent implements OnInit {
         link: `/${Route.NOTIFICATIONS}`,
       },
       {
+        name: 'Events',
+        link: `/${Route.EVENTS}`
+      },
+      {
         name: 'Logout',
         link: `/${Route.LOGIN}`,
       },
@@ -79,19 +83,23 @@ export class ToolbarComponent implements OnInit {
     const route = this.route.substring(1);
     const link = button.link.substring(1);
 
-    if (link === Route.PUBLIC_PROFILES) {
-      return false;
+    if (this.storageService.getAuth()?.role !== Role.ADMIN) {
+      if (link === Route.PUBLIC_PROFILES) {
+        return false;
+      }
+
+      const unAuthRoute = route === Route.LOGIN || route === Route.REGISTRATION || (route === Route.PUBLIC_PROFILES && !this.storageService.getAuth());
+      if (button.name === 'Logout') {
+        return unAuthRoute;
+      }
+
+      if (unAuthRoute) {
+        return link !== Route.LOGIN && link !== Route.REGISTRATION && link !== Route.PUBLIC_PROFILES;
+      }
+      return link === Route.LOGIN || link === Route.REGISTRATION;
     }
 
-    const unAuthRoute = route === Route.LOGIN || route === Route.REGISTRATION || (route === Route.PUBLIC_PROFILES && !this.storageService.getAuth());
-    if (button.name === 'Logout') {
-      return unAuthRoute;
-    }
-
-    if (unAuthRoute) {
-      return link !== Route.LOGIN && link !== Route.REGISTRATION && link !== Route.PUBLIC_PROFILES;
-    }
-    return link === Route.LOGIN || link === Route.REGISTRATION;
+    return link !== Route.EVENTS && button.name !== 'Logout'
   }
 
 }

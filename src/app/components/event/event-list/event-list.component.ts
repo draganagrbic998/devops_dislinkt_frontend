@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-offer-list',
+  selector: 'app-event-list',
   template: `<app-list [config]="this"></app-list>`,
 })
-export class OfferListComponent {
+export class EventListComponent {
 
-  title = 'Offers';
-  serviceName = 'offerService';
+  title = 'Events';
+  serviceName = 'eventService';
   methodName = 'read';
   hiddenFields = ['id'];
 

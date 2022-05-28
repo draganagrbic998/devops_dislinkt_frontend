@@ -9,6 +9,7 @@ export enum Route {
     CONNECTION_REQUESTS = 'profiles/connection_requests',
     PROFILE_FORM = 'profile-form',
     NOTIFICATIONS = 'notifications',
+    EVENTS = 'events'
 }
 
 export enum Role {
