@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@kolkov/angular-editor": "^2.0.0",
     "@types/socket.io-client": "^1.4.32",
     "codelyzer": "^6.0.2",
     "rxjs": "~7.5.0",
