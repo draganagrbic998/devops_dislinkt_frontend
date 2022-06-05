@@ -86,6 +86,16 @@ export class ProfileListComponent implements OnInit {
           await this.profileService.block(item.id).toPromise();
         },
       },
+      {
+        name: 'MESSAGE',
+        hidden: (item: Profile) => {
+          return !(item.connections.includes(profile.id)
+            && profile.connections.includes(item.id));
+        },
+        click: async (item: Profile) => {
+          this.router.navigate(['message', profile.id, item.id]);
+        },
+      },
     ];
   }
 
