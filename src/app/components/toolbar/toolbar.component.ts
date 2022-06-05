@@ -101,7 +101,7 @@ export class ToolbarComponent implements OnInit {
       }
 
       const unAuthRoute = route === Route.LOGIN || route === Route.REGISTRATION ||
-        ((route === Route.PUBLIC_PROFILES || route.includes('posts/public') || route.includes('comments/public')) && !this.storageService.getAuth());
+        ((route.startsWith(Route.PUBLIC_PROFILES) || route.includes('posts/public') || route.includes('comments/public')) && !this.storageService.getAuth());
       if (button.name === 'Logout') {
         return unAuthRoute;
       }

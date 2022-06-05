@@ -100,6 +100,11 @@ const routes: Routes = [
     component: PostFormComponent,
     data: { roles: [Role.USER] },
   },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: Route.LOGIN
+  }
 ];
 
 @NgModule({
