@@ -3,13 +3,20 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Page } from '../models/pagination';
 import { Profile } from '../models/profile';
+import { tap } from 'rxjs';
+import { Auth } from '../models/auth';
+import { StorageService } from './storage.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private storageService: StorageService,
+  ) { }
 
   private readonly PROFILES_URL = `${environment.apiUrl}/api/profiles`;
   private readonly PROFILE_URL = `${environment.apiUrl}/api/profile`;
@@ -43,7 +50,7 @@ export class ProfileService {
   }
 
   updateProfile(profile: Profile) {
-    return this.http.put<void>(this.PROFILE_URL, profile);
+    return this.http.put<Auth>(this.PROFILE_URL, profile).pipe(tap(res => this.storageService.setAuth(res)));
   }
 
   connect(id: number) {

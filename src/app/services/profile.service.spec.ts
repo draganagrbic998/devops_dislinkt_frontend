@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { fakeAsync, getTestBed, TestBed, tick } from '@angular/core/testing';
 import { Page } from '../models/pagination';
 import { Profile } from '../models/profile';
+import { Auth } from '../models/auth';
 
 const PROFILES_MOCK: Profile[] = [
     {
@@ -221,7 +222,7 @@ describe('ProfileService', () => {
     }));
 
     it('should update profile', fakeAsync(() => {
-        let res: void;
+        let res: Auth;
 
         service.updateProfile(PROFILES_MOCK[0]).subscribe(response => res = response);
         const request = httpMock.expectOne(service['PROFILE_URL']);

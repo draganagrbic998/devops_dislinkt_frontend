@@ -67,6 +67,7 @@ export class PostListComponent implements OnInit {
               post_id: item.id
             };
             await this.postService.like(like).toPromise();
+            item.opinion = 'liked';
           },
         },
         {
@@ -79,6 +80,7 @@ export class PostListComponent implements OnInit {
               post_id: item.id
             };
             await this.postService.dislike(dislike).toPromise();
+            item.opinion = 'disliked';
           },
         },
         {
@@ -86,6 +88,7 @@ export class PostListComponent implements OnInit {
           hidden: (item: Post) => item.opinion == 'neither',
           click: async (item: Post) => {
             await this.postService.neither(item.id).toPromise();
+            item.opinion = 'neither';
           },
         },
         {
