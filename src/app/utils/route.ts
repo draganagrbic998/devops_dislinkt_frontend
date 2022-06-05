@@ -10,7 +10,14 @@ export enum Route {
     PROFILE_FORM = 'profile-form',
     NOTIFICATIONS = 'notifications',
     EVENTS = 'events',
-    MESSAGE = 'message/:sender_id/:recepient_id'
+    MESSAGE = 'message/:sender_id/:recepient_id',
+    POSTS = 'posts/:id',
+    PUBLIC_POSTS = 'posts/public/:id',
+    COMMENTS = 'comments/:id',
+    PUBLIC_COMMENTS = 'comments/public/:id',
+    POST_FORM = 'post-form',
+    UPLOAD = '/api/posts/upload',
+    MY_POSTS = "posts/private/mine"
 }
 
 export enum Role {

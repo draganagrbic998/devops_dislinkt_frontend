@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Params } from '@angular/router';
 import { ChatService } from 'src/app/services/chat.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'chat',
@@ -15,11 +16,14 @@ export class ChatComponent {
 
   roomName;
   senderId;
+  sender;
   recepientId;
+  recepient;
   messages = [];
 
   constructor(
     private socketService: ChatService,
+    private profileService: ProfileService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) {
@@ -36,6 +40,14 @@ export class ChatComponent {
         } else {
           this.roomName = this.recepientId + "_" + this.senderId;
         }
+
+        this.profileService.readOneProfile(this.senderId).subscribe(res => {
+          this.sender = res.first_name + " " + res.last_name;
+        });
+
+        this.profileService.readOneProfile(this.recepientId).subscribe(res => {
+          this.recepient = res.first_name + " " + res.last_name;
+        });
 
         this.connect();
       }
@@ -72,7 +84,8 @@ export class ChatComponent {
   submitMessage() {
     const message = this.messageForm.get('message').value;
     if (message) {
-      this.socketService.sendMessage({ message, senderId: this.senderId, recepientId: this.recepientId, roomName: this.roomName });
+      this.socketService.sendMessage(
+        { message, senderId: this.senderId, sender: this.sender, recepientId: this.recepientId, roomName: this.roomName });
       this.messageForm.reset();
     }
   }

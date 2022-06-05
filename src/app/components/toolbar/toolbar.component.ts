@@ -65,6 +65,14 @@ export class ToolbarComponent implements OnInit {
         link: `/${Route.PROFILE_FORM}`,
       },
       {
+        name: 'My Posts',
+        link: `/${Route.MY_POSTS}`,
+      },
+      {
+        name: 'Create Post',
+        link: `/${Route.POST_FORM}`,
+      },
+      {
         name: 'Notifications',
         link: `/${Route.NOTIFICATIONS}`,
       },
@@ -84,17 +92,19 @@ export class ToolbarComponent implements OnInit {
     const link = button.link.substring(1);
 
     if (this.storageService.getAuth()?.role !== Role.ADMIN) {
-      if (link === Route.PUBLIC_PROFILES) {
+      if (link === Route.PUBLIC_PROFILES || link.includes('posts/public') || link.includes('comments/public')) {
         return false;
       }
 
-      const unAuthRoute = route === Route.LOGIN || route === Route.REGISTRATION || (route === Route.PUBLIC_PROFILES && !this.storageService.getAuth());
+      const unAuthRoute = route === Route.LOGIN || route === Route.REGISTRATION ||
+        ((route === Route.PUBLIC_PROFILES || route.includes('posts/public') || route.includes('comments/public')) && !this.storageService.getAuth());
       if (button.name === 'Logout') {
         return unAuthRoute;
       }
 
       if (unAuthRoute) {
-        return link !== Route.LOGIN && link !== Route.REGISTRATION && link !== Route.PUBLIC_PROFILES;
+        return link !== Route.LOGIN && link !== Route.REGISTRATION &&
+          link !== Route.PUBLIC_PROFILES && !link.includes('posts/public') && !link.includes('comments/public');
       }
       return link === Route.LOGIN || link === Route.REGISTRATION;
     }

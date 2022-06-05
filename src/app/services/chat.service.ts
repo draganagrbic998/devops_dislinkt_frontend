@@ -1,7 +1,11 @@
+import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class ChatService {
-  private url = 'ws://localhost:9010/';
+  private url = 'ws://localhost:8000/';
   socket;
 
   constructor() { }
@@ -40,9 +44,9 @@ export class ChatService {
     }
   }
 
-  sendMessage = ({ message, senderId, recepientId, roomName }) => {
+  sendMessage = ({ message, senderId, sender, recepientId, roomName }) => {
     if (this.socket) {
-      this.socket.emit('message', { 'content': message, 'sender_id': senderId, 'recipient_id': recepientId }, roomName);
+      this.socket.emit('message', { 'content': message, 'sender_id': senderId, 'sender': sender, 'recipient_id': recepientId }, roomName);
     }
   }
 
