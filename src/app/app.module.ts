@@ -21,7 +21,12 @@ import { NotificationListComponent } from './components/notification/notificatio
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventListComponent } from './components/event/event-list/event-list.component';
 import { ChatComponent } from './components/chat/chat.component';
-import { ChatService } from './services/chat.service';
+import { PostListComponent } from './components/post/post-list/post-list.component';
+import { PostFormComponent } from './components/post/post-form/post-form.component';
+import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
+import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
+import { CommentComponent } from './components/comment/comment/comment.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,12 @@ import { ChatService } from './services/chat.service';
     NotificationListComponent,
     ToolbarComponent,
     EventListComponent,
-    ChatComponent
+    ChatComponent,
+    PostListComponent,
+    PostFormComponent,
+    CommentFormComponent,
+    CommentListComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +56,7 @@ import { ChatService } from './services/chat.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularEditorModule,
 
     AppRoutingModule,
     MaterialModule,
@@ -56,7 +67,6 @@ import { ChatService } from './services/chat.service';
       useClass: AuthInterceptor,
       multi: true,
     },
-    ChatService
   ],
   bootstrap: [AppComponent],
 })

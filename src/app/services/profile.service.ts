@@ -38,6 +38,10 @@ export class ProfileService {
     return this.http.get<Profile>(this.PROFILE_URL);
   }
 
+  readOneProfile(id: number) {
+    return this.http.get<Profile>(`${this.PROFILE_URL}/${id}`);
+  }
+
   updateProfile(profile: Profile) {
     return this.http.put<void>(this.PROFILE_URL, profile);
   }

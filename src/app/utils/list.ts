@@ -4,6 +4,8 @@ export interface ListConfig {
     methodName: string;
     hiddenFields?: string[];
     buttons?: ButtonConfig[];
+    show_search?: boolean;
+    richFields?: string[];
 }
 
 export interface ButtonConfig {

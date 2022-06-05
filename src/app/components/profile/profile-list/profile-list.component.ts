@@ -40,6 +40,8 @@ export class ProfileListComponent implements OnInit {
 
     if (route !== Route.PUBLIC_PROFILES) {
       this.setButtons(route);
+    } else {
+      this.setButtonsPublic(route);
     }
   }
 
@@ -87,15 +89,40 @@ export class ProfileListComponent implements OnInit {
         },
       },
       {
-        name: 'MESSAGE',
+        name: 'POSTS',
         hidden: (item: Profile) => {
           return !(item.connections.includes(profile.id)
             && profile.connections.includes(item.id));
         },
         click: async (item: Profile) => {
+          this.router.navigate(['posts', item.id]);
+        },
+      },
+      {
+        name: 'MESSAGE',
+        hidden: (item: Profile) => {
+          return (route == Route.PUBLIC_PROFILES || !(item.connections.includes(profile.id)
+            && profile.connections.includes(item.id)));
+        },
+        click: async (item: Profile) => {
           this.router.navigate(['message', profile.id, item.id]);
         },
       },
+    ];
+  }
+
+  private async setButtonsPublic(route: string) {
+    this.buttons = [
+      {
+        name: 'POSTS',
+        hidden: (item: Profile) => {
+          return (route != Route.PUBLIC_PROFILES);
+        },
+        click: async (item: Profile) => {
+          this.router.navigate(['posts/public', item.id]);
+        },
+      },
+
     ];
   }
 
