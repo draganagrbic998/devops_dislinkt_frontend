@@ -20,6 +20,8 @@ import { ProfileFormComponent } from './components/profile/profile-form/profile-
 import { NotificationListComponent } from './components/notification/notification-list/notification-list.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventListComponent } from './components/event/event-list/event-list.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { ChatService } from './services/chat.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { EventListComponent } from './components/event/event-list/event-list.com
     NotificationListComponent,
     ToolbarComponent,
     EventListComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { EventListComponent } from './components/event/event-list/event-list.com
       useClass: AuthInterceptor,
       multi: true,
     },
+    ChatService
   ],
   bootstrap: [AppComponent],
 })

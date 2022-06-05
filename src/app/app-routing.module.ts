@@ -9,6 +9,7 @@ import { ProfileListComponent } from './components/profile/profile-list/profile-
 import { ProfileFormComponent } from './components/profile/profile-form/profile-form.component';
 import { NotificationListComponent } from './components/notification/notification-list/notification-list.component';
 import { EventListComponent } from './components/event/event-list/event-list.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -62,7 +63,12 @@ const routes: Routes = [
     path: Route.EVENTS,
     component: EventListComponent,
     data: { roles: [Role.ADMIN] }
-  }
+  },
+  {
+    path: Route.MESSAGE,
+    component: ChatComponent,
+    data: { roles: [Role.USER] },
+  },
 ];
 
 @NgModule({
