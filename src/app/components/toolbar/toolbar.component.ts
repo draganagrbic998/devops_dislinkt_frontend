@@ -92,6 +92,10 @@ export class ToolbarComponent implements OnInit {
     const link = button.link.substring(1);
 
     if (this.storageService.getAuth()?.role !== Role.ADMIN) {
+      if (link === Route.EVENTS) {
+        return true;
+      }
+
       if (link === Route.PUBLIC_PROFILES || link.includes('posts/public') || link.includes('comments/public')) {
         return false;
       }

@@ -76,12 +76,14 @@ export class ListComponent implements OnInit, OnDestroy {
 
   fields(item: any) {
     return Object.keys(item).filter(
-      field => !this.config.hiddenFields?.includes(field) && typeof item[field] !== 'object' && !this.config.richFields?.includes(field));
+      field => !this.config.hiddenFields?.includes(field) && (typeof item[field] !== 'object' || Array.isArray(item[field]))
+        && !this.config.richFields?.includes(field));
   }
 
   compositeData(item: any) {
     const compositeFields = Object.keys(item).filter(
-      field => !this.config.hiddenFields?.includes(field) && typeof item[field] === 'object' && !this.config.richFields?.includes(field))
+      field => !this.config.hiddenFields?.includes(field) && typeof item[field] === 'object' && !Array.isArray(item[field])
+        && !this.config.richFields?.includes(field))
     let values = {}
     for (const field of compositeFields) {
       values = { ...values, ...item[field] }
